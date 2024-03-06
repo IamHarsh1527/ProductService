@@ -1,10 +1,15 @@
 package com.scaler.Ecommerce.ProductService.controllers;
 
+import com.scaler.Ecommerce.ProductService.dtos.Exceptiondto;
 import com.scaler.Ecommerce.ProductService.dtos.GenericProductDto;
-import com.scaler.Ecommerce.ProductService.models.Product;
+import com.scaler.Ecommerce.ProductService.exceptions.NotFoundException;
 import com.scaler.Ecommerce.ProductService.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/products")
@@ -17,18 +22,29 @@ public class ProductController {
         this.productService=productService;
     }
 
-    @GetMapping("/hello/{name}")
-    public String SayHello(@PathVariable("name") String name){
-        return "Hello "+name;
-    }
-
     @GetMapping("{id}")
-    public GenericProductDto getProductbyId(@PathVariable("id") Long id){
+    public GenericProductDto getProductbyId(@PathVariable("id") Long id) throws NotFoundException {
         return productService.getProductById(id);
     }
+
+//    @ExceptionHandler(NotFoundException.class)
+//    public ResponseEntity<Exceptiondto> handleNotFoundException(NotFoundException notFoundException){
+//        return new ResponseEntity<>(new Exceptiondto(HttpStatus.NOT_FOUND,notFoundException.getMessage()) ,
+//                HttpStatus.NOT_FOUND);
+//    }
 
     @PostMapping("/create")
     public GenericProductDto createProduct(@RequestBody GenericProductDto genericProductDto){
         return productService.createProduct(genericProductDto);
+    }
+
+    @GetMapping()
+    public GenericProductDto[] getAllProduct(){
+        return productService.getAll();
+    }
+
+    @DeleteMapping("{id}")
+    public GenericProductDto deleteById(@PathVariable("id") Long id){
+        return productService.deleteBySpecifiedId(id);
     }
 }
