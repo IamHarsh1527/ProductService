@@ -1,5 +1,6 @@
 package com.scaler.Ecommerce.ProductService.dtos;
 
+import com.scaler.Ecommerce.ProductService.thirdPartyClient.FakeStoreProductDto;
 import lombok.Getter;
 import lombok.Setter;
 

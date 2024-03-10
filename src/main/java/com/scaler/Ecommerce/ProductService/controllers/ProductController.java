@@ -27,11 +27,6 @@ public class ProductController {
         return productService.getProductById(id);
     }
 
-//    @ExceptionHandler(NotFoundException.class)
-//    public ResponseEntity<Exceptiondto> handleNotFoundException(NotFoundException notFoundException){
-//        return new ResponseEntity<>(new Exceptiondto(HttpStatus.NOT_FOUND,notFoundException.getMessage()) ,
-//                HttpStatus.NOT_FOUND);
-//    }
 
     @PostMapping("/create")
     public GenericProductDto createProduct(@RequestBody GenericProductDto genericProductDto){

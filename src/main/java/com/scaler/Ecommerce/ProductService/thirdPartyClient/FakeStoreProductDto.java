@@ -1,4 +1,4 @@
-package com.scaler.Ecommerce.ProductService.dtos;
+package com.scaler.Ecommerce.ProductService.thirdPartyClient;
 
 import com.scaler.Ecommerce.ProductService.models.Base;
 import com.scaler.Ecommerce.ProductService.models.Category;
