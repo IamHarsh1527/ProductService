@@ -39,9 +39,9 @@ public class FakeStoreProductClient {
     public FakeStoreProductDto getProductById(Long id) throws NotFoundException {
         RestTemplate restTemplate = restTemplateBuilder.build();
         ResponseEntity<FakeStoreProductDto> response = restTemplate.getForEntity(
-                GetUrl,
-                FakeStoreProductDto.class,
-                id);
+                GetUrl,//url diya jisse data milega
+                FakeStoreProductDto.class,//kis typ ka data milega
+                id);//uri jo use kr k specific data milega
 
         FakeStoreProductDto fakeStoreProductDto=response.getBody();
         if(fakeStoreProductDto==null){
@@ -59,6 +59,8 @@ public class FakeStoreProductClient {
                 genericProductDto,
                 FakeStoreProductDto.class
         );
+
+
         FakeStoreProductDto fake = response.getBody();
         return fake;
     }
@@ -73,7 +75,7 @@ public class FakeStoreProductClient {
         return prod;
     }
 
-    public FakeStoreProductDto deleteBySpecifiedId(Long id) {
+    public FakeStoreProductDto deleteBySpecifiedId(Long id) throws NotFoundException {
         RestTemplate restTemplate = restTemplateBuilder.build();
         ResponseEntity<FakeStoreProductDto> res = restTemplate
                 .exchange(
@@ -84,6 +86,9 @@ public class FakeStoreProductClient {
                         id);
 
         FakeStoreProductDto fakeStoreProductDto = res.getBody();
+        if(fakeStoreProductDto==null){
+            throw new NotFoundException("id "+id+" Not Found");
+        }
         return fakeStoreProductDto;
     }
 }

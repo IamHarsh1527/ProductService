@@ -13,5 +13,5 @@ public interface ProductService {
 
      GenericProductDto[] getAll();
 
-     GenericProductDto deleteBySpecifiedId(Long id);
+     GenericProductDto deleteBySpecifiedId(Long id) throws NotFoundException;
 }

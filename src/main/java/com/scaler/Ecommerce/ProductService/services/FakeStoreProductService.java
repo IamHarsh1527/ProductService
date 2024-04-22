@@ -26,13 +26,13 @@ public class FakeStoreProductService implements ProductService{
     }
 
     @Override
-    public GenericProductDto deleteBySpecifiedId(Long id) {
+    public GenericProductDto deleteBySpecifiedId(Long id) throws NotFoundException {
         return convertFakeStoreDtoToGeneric(client.deleteBySpecifiedId(id));
     }
 
     private GenericProductDto convertFakeStoreDtoToGeneric(FakeStoreProductDto fake) {
         GenericProductDto genericProductDto1 = new GenericProductDto();
-        genericProductDto1.setId(fake.getId());
+       // genericProductDto1.setId(fake.getId());
         genericProductDto1.setPrice(fake.getPrice());
         genericProductDto1.setCategory(fake.getCategory());
         genericProductDto1.setTitle(fake.getTitle());
