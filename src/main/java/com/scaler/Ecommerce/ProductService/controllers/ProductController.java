@@ -3,12 +3,15 @@ package com.scaler.Ecommerce.ProductService.controllers;
 import com.scaler.Ecommerce.ProductService.dtos.Exceptiondto;
 import com.scaler.Ecommerce.ProductService.dtos.GenericProductDto;
 import com.scaler.Ecommerce.ProductService.exceptions.NotFoundException;
+import com.scaler.Ecommerce.ProductService.models.Category;
+import com.scaler.Ecommerce.ProductService.repository.CategoryRepository;
 import com.scaler.Ecommerce.ProductService.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -23,7 +26,7 @@ public class ProductController {
     }
 
     @GetMapping("{id}")
-    public GenericProductDto getProductbyId(@PathVariable("id") Long id) throws NotFoundException {
+    public GenericProductDto getProductbyId(@PathVariable("id") UUID id) throws NotFoundException {
         return productService.getProductById(id);
     }
 
@@ -39,7 +42,7 @@ public class ProductController {
     }
 
     @DeleteMapping("{id}")
-    public GenericProductDto deleteById(@PathVariable("id") Long id) throws NotFoundException {
+    public GenericProductDto deleteById(@PathVariable("id") UUID id) throws NotFoundException {
         return productService.deleteBySpecifiedId(id);
     }
 }
